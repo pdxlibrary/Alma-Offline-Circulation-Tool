@@ -16,42 +16,32 @@ var formArray2 = null;
 
 function init()
 {
-	// Keeps track of the form on the page.
 	form = document.mainform;
 	
-	// These two arrays are just to let me do some for loops on the form elements. Since I was getting tired of adding a new if-else and looking at all of them, keeping these arrays here feels just a little bit easier.
+	/* These two arrays are just to let me do some for loops on the form elements. Since 
+         * I was getting tired of adding a new if-else and looking at all of them, keeping 
+         * these arrays here feels just a little bit easier.
+         */
 	formArray = {
 		library: {
 			value: "",
 			error: "---",
 			item: form.library,
 			string: "Please select your Library\n"
-			},
-		ibcode: {
+		},
+		itemBarcode: {
 			value: "",
-			item: form.ibcode,
+			item: form.itemBarcode,
 			error: "",
 			string: "Please provide a valid Item Barcode in Checkout\n"
-			},
-		icallnum: {
+		},
+		patronBarcode: {
 			value: "",
-			item: form.icallnum,
-			error: "",
-			string: "Please provide a valid Item Call Number in Checkout\n"
-			},
-		pbcode: {
-			value: "",
-			item: form.pbcode,
+			item: form.patronBarcode,
 			error: "",
 			string: "Please provide a valid Patron Barcode or ID in Checkout\n"
-			},
-		pname: {
-			value: "",
-			item: form.pname,
-			error: "",
-			string: "Please provide a valid Patron Name in Checkout\n"
-			}
-		};
+		}
+	};
 	
 	formArray2 = {
 		library: {
@@ -59,27 +49,25 @@ function init()
 			error: "---",
 			item: form.library,
 			string: "Please select your Library\n"
-			},
-		ibcode2: {
+		},
+		itemBarcode2: {
 			value: "",
-			item: form.ibcode2,
+			item: form.itemBarcode2,
 			error: "",
 			string: "Please provide a valid Item Barcode in Checkin\n"
-			}/*,
-		icallnum2: {	// Not sure how to add this but not check this item, so I am omitting it until it proves necessary.
-			value: "",
-			item: form.icallnum2,
-			error: "",
-			string: "Please provide a valid Item Call Number in Checkin\n"
-			},*/
-		};
+		}
+	};
 	
-	// Checkout and Checkin have similar functions, but are different because of the form elements they interact with.
+	/* Checkout and Checkin have similar functions, but are different because of 
+         * the form elements they interact with.
+         */
 	form.checkoutbutton.addEventListener("click", checkout, false);
 	form.checkinbutton.addEventListener("click", checkin, false);
 	
-	// This prevents the [Enter] key from submitting, because barcode scanners end their input with an [Enter] key equivalent.
-	document.onkeypress = stopRKey;
+	/* This prevents the [Enter] key from submitting, because 
+         * barcode scanners end their input with an [Enter] key equivalent.
+         */
+	document.onkeypress = disableReturnKey;
 }
 
 
@@ -96,14 +84,14 @@ function checkout()
 		formArray[i]["value"] = formArray[i]["item"].value.replace(",","");
 	}
 	
-	if (PBCODE_REG_EXP.exec(formArray["pbcode"]["value"]))
-		formArray["pbcode"]["value"] = PBCODE_REG_EXP.exec(formArray["pbcode"]["value"])[0];
+	if (PBCODE_REG_EXP.exec(formArray["patronBarcode"]["value"]))
+		formArray["patronBarcode"]["value"] = PBCODE_REG_EXP.exec(formArray["patronBarcode"]["value"])[0];
 	else
-		formArray["pbcode"]["value"] = "";
+		formArray["patronBarcode"]["value"] = "";
 	
 	for (var i in formArray)
 	{
-		if (!checkValidity(formArray[i]["value"], formArray[i]["error"], formArray[i]["item"]))
+		if (!validateField(formArray[i]["value"], formArray[i]["error"], formArray[i]["item"]))
 		{
 			errorText += formArray[i]["string"];
 			error = true;
@@ -116,13 +104,10 @@ function checkout()
 		return false;
 	}
 	
-	string += formArray["library"]["value"] + "," + now + ',L,' + formArray["ibcode"]["value"] + "," + formArray["icallnum"]["value"] + "," + formArray["pbcode"]["value"] + "," + formArray["pname"]["value"] + "\n";
-	
+	string += formArray["library"]["value"] + "," + now + ',L,' + formArray["itemBarcode"]["value"] + "," + "," + formArray["patronBarcode"]["value"] + "," + "\n";
 	form.textarea.value += string;
-	
-	form.ibcode.value = "";
-	form.icallnum.value = "";
-	
+	form.itemBarcode.value = "";
+
 	return false;
 }
 
@@ -135,8 +120,6 @@ function checkin()
 	var error = false;
 	var errorText = "";
 	
-	var icallnum2 = form.icallnum2.value.replace(",","");
-	
 	for (var i in formArray2)
 	{
 		formArray2[i]["value"] = formArray2[i]["item"].value.replace(",","");
@@ -144,7 +127,7 @@ function checkin()
 	
 	for (var i in formArray2)
 	{
-		if (!checkValidity(formArray2[i]["value"], formArray2[i]["error"], formArray2[i]["item"]))
+		if (!validateField(formArray2[i]["value"], formArray2[i]["error"], formArray2[i]["item"]))
 		{
 			errorText += formArray2[i]["string"];
 			error = true;
@@ -157,38 +140,22 @@ function checkin()
 		return false;
 	}
 	
-	string += formArray2["library"]["value"] + "," + now + ',R,' + formArray2["ibcode2"]["value"] + "," + icallnum2 + ",,\n";
-	
+	string += formArray2["library"]["value"] + "," + now + ',R,' + formArray2["itemBarcode2"]["value"] + "," + ",,,\n";
 	form.textarea.value += string;
-	
-	form.ibcode2.value = "";
-	form.icallnum2.value = "";
+	form.itemBarcode2.value = "";
 	
 	return false;
 }
 
 
 
-function stopRKey(evt, focus)
+function disableReturnKey(evt, focus)
 {
 	var evt = (evt) ? evt : ((event) ? event : null);
 	var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
 	
 	if ((evt.keyCode == 13) && (node.type=="text"))
 	{
-		/*var thisElement = node.id;
-		var x = 0;
-		
-		for (key in formItems)
-			if (formItems[key] == thisElement)
-				x = key;
-		
-		x++;
-		if (x > formItems.length)
-			x = 0;
-		
-		document.getElementById(formItems[index]).focus();*/
-		
 		return false;
 	}
 }
@@ -210,7 +177,7 @@ function rightNow()
 
 
 
-function checkValidity(text, wrong, item)
+function validateField(text, wrong, item)
 {
 	if (text == wrong)
 	{

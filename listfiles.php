@@ -1,15 +1,16 @@
 <?php
+	ini_set('display_errors',1); 
+	error_reporting(E_ALL);
 	$page_title = 'List Generated Files';
 	include_once('include/page_begin.php');
 ?>
 			<p><a href="listrecords.php">Return to List Records</a></p>
+			<p>Right-click, Save link as...</p>
 			
 			<ul>
 				<?php
-					// Basically, this list shows all the files except '.' and '..' in './output' sorted descending by name (the names are all timestamps, so in effect sorted from most to least recent). './output' needs to at least be readable to the rest of the world for this to make sense.
-					
 					$DIR = './output';
-					$DIR_CONTENTS = array_diff(scandir($DIR), array('..','.'));
+					$DIR_CONTENTS = array_diff(scandir($DIR), array('..','.','.gitinclude'));
 					rsort($DIR_CONTENTS);
 					
 					foreach($DIR_CONTENTS as $item)

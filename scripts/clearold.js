@@ -25,13 +25,13 @@ function checkdate()
 	var monthAgo = oneMonthAgo();
 	var error = false;
 	var errorText = "";
-	var datetime = form.datetime.value.replace("-","","g") + "000000";
+	var timestamp = form.timestamp.value.replace("-","","g") + "000000";
 	
-	if (datetime < monthAgo)
+	if (timestamp < monthAgo)
 		return true;
 	
 	errorText += "You need to keep at least the last month's worth of records.";
-	checkValidity(true,form.datetime);
+	checkValidity(true,form.timestamp);
 	alert(errorText)
 	return false;
 }

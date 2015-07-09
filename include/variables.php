@@ -17,12 +17,12 @@
 	
 	// This database connection is used extensively enough to warrant just putting it here for easy access.
 	
-	$DB = new mysqli($DB_SERV, $DB_USER, $DB_PASS, $DB_NAME);
+	$DB = new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
 	
 	// These are strings with which to prepare statements for the database tasks that we expect need to be performed during regular usage.
 	
-	$DB_INSERT_STRING = "INSERT INTO $DB_TABL VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
-	$DB_SELECT_STRING = "SELECT * FROM $DB_TABL WHERE saved = 0 AND library LIKE ?";
-	$DB_SAVED_STRING = "UPDATE $DB_TABL SET saved=1 WHERE datetime = ? AND itmbarcd = ?";
-	$DB_DELETE_STRING = "DELETE QUICK FROM $DB_TABL WHERE saved = 1 AND datetime < ?";
+	$DB_INSERT_STRING = "INSERT INTO $DB_TABLE VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
+	$DB_SELECT_STRING = "SELECT * FROM $DB_TABLE WHERE saved = 0 AND library LIKE ?";
+	$DB_SAVED_STRING = "UPDATE $DB_TABLE SET saved=1 WHERE timestamp = ? AND item_barcode = ?";
+	$DB_DELETE_STRING = "DELETE QUICK FROM $DB_TABLE WHERE saved = 1 AND timestamp < ?";
 ?>
