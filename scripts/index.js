@@ -1,7 +1,3 @@
-/*if (document.addEventListener) {
-	document.addEventListener("DOMContentLoaded", init, false);
-}*/
-
 window.onload = init;
 
 // This is a regular expression to pull the first set of numbers out of a patron barcode.

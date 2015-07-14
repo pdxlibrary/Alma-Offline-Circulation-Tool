@@ -23,6 +23,7 @@
 	
 	$DB_INSERT_STRING = "INSERT INTO $DB_TABLE VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
 	$DB_SELECT_STRING = "SELECT * FROM $DB_TABLE WHERE saved = 0 AND library LIKE ?";
-	$DB_SAVED_STRING = "UPDATE $DB_TABLE SET saved=1 WHERE timestamp = ? AND item_barcode = ?";
-	$DB_DELETE_STRING = "DELETE QUICK FROM $DB_TABLE WHERE saved = 1 AND timestamp < ?";
+	$DB_SELECT_DATE_STRING = "SELECT * FROM transactions WHERE timestamp LIKE ?";
+	$DB_SAVED_STRING  = "UPDATE $DB_TABLE SET saved = 1 WHERE timestamp = ? AND item_barcode = ?";
+	$DB_DELETE_STRING = "DELETE QUICK FROM $DB_TABLE WHERE saved = 1 AND timestamp LIKE ?";
 ?>

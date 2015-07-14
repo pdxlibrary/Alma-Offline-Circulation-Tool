@@ -6,7 +6,6 @@
 ?>
 			<p><a href="listrecords.php">Return to List Records</a></p>
 			<p>Right-click, Save link as...</p>
-			
 			<ul>
 				<?php
 					$DIR = './output';

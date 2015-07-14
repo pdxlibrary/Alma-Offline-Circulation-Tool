@@ -1,19 +1,31 @@
 <?php
-	$page_title = 'Deleting Old Records';
+	$page_title = 'Delete Files and Records';
 	include_once('include/page_begin.php');
 ?>
-                        <p>Upon choosing a date and selecting &quot;Clear Records/Files&quot;, you 
-                        will be taken to a page that will either report errors with the process or 
-                        delete all saved database records and stored files before (but not on) the 
-                        date you selected. If you browse to the <a href="deleteold.php">Delete Old 
-                        Records page</a> without specifying a date, it will simply assume you meant 
-                        to delete everything older than 3 months.</p>
+	<form action="deleteold.php" id="mainform" method="POST" name="mainform">
+		<p>
+		<select name="action">
+			<option value="none" selected>---</option>
+			<option value="delete">Delete Files and Records</option>
+		</select>
+		</p>
+		<p>
+		<?php
+			$DIR = './output';
+			$DIR_CONTENTS = array_diff(scandir($DIR), array('..','.','.gitinclude'));
+			rsort($DIR_CONTENTS);
 			
-			<form action="deleteold.php" id="mainform" method="POST" name="mainform">
-				<label for="timestamp">Date (<em>yyyy-mm-dd</em>)</label>
-				<input form="mainform" id="timestamp" name="timestamp" type="date" />
-				<input class="middlesubmit" type="submit" value="Clear Records/Files" />
-			</form>
+			foreach($DIR_CONTENTS as $item)
+			{
+				$path = "output/$item";
+				$filesize = filesize($path);
+				$delete_time = explode('_', $item);
+				echo "<input type=\"checkbox\" name=\"file[]\" value=\"$path\" /><a href=\"$path\">$delete_time[1]</a><br />\n";
+			}
+		?>
+		</p>
+		<input class="middlesubmit" type="submit" value="Delete" />
+	</form>
 <?php
 	include_once('include/page_end.php');
 ?>

@@ -19,13 +19,13 @@
 	
 	if($row['timestamp'] != '')
 	{
-                // If the $library is null, we should not proceed to extract anything... 
-                // The error for this check is broken though.
+        // If the $library is null, we should not proceed to extract anything... 
+        // The error for this check is broken though.
 		if ($library)
 		{
-                        // Either the library is '---' and we should grab everything, 
-                        // or it is set and we should use that information. The files 
-                        // should have branch information if applicable.
+            // Either the library is '---' and we should grab everything, 
+            // or it is set and we should use that information. The files 
+            // should have branch information if applicable.
 			$datetime = strftime('%F_%H%M%S');
 			
 			if ($library != '%')
@@ -41,12 +41,12 @@
 			{
 				do
 				{
-                                        $timestamp = new DateTime($row['timestamp']);
-                                        $alma_string = $timestamp->format("YmdHi") . $row['return_or_loan'] . $row['item_barcode'];
-                                        /* YYYYMMDDHHmm is 12 characters, L/R is one more, then there are 80 characters for 
-                                         * the barcode as a fixed width. If the barcode is not that long, spaces are added 
-                                         * to the end of it until it is. 12 + 1 + 80 = 93.
-                                         */
+                    $timestamp = new DateTime($row['timestamp']);
+                    $alma_string = $timestamp->format("YmdHi") . $row['return_or_loan'] . $row['item_barcode'];
+                    /* YYYYMMDDHHmm is 12 characters, L/R is one more, then there are 80 characters for 
+                     * the barcode as a fixed width. If the barcode is not that long, spaces are added 
+                     * to the end of it until it is. 12 + 1 + 80 = 93.
+                     */
 					$alma_string = str_pad($alma_string,93);	
 					
 					if ($row['patron_barcode'] != '')
@@ -69,8 +69,8 @@
 			}
 			else
 			{
-                                ?> <p>ERROR! Something failed to open.</p> <?php
-                                exit();
+                ?> <p>ERROR! Something failed to open.</p> <?php
+                exit();
 				$errors = 'We had an error with opening the files, so they have not been written.';
 			}
 		}
@@ -84,10 +84,10 @@
 	$page_title = 'Extract Records';
 	include_once('include/page_begin.php');
 ?>
-                        <p>This page should have just extracted all current records (verifiable on 
-                        the <a href="listrecords.php">record-listing page</a>, which should now 
-                        be empty). You can get to your files, listed from newest to oldest, at the 
-                        page for <a href="listfiles.php">viewing previously generated files</a>.</p>
+    <p>This page should have just extracted all current records (verifiable on 
+    the <a href="listrecords.php">record-listing page</a>, which should now 
+    be empty). You can get to your files, listed from newest to oldest, at the 
+    page for <a href="listfiles.php">viewing previously generated files</a>.</p>
 <?php
 	if (isset($errors)) echo "<div class=\"errors\"><h2>Errors</h2><p>$errors</p></div>";
 

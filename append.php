@@ -19,15 +19,4 @@
 	}
 
 	header('Location: index.php');
-	/*
-	$page_title = "Add Records for {$LIBRARIES_ARRAY[$_POST['library']]}";
-	include_once('include/page_begin.php');
-?>			
-			<form action="index.php" id="mainform" method="POST" name="mainform">
-				<label for="library">Library</label><input id="library" name="library" readonly type="text" value="<?php echo $_POST['library']; ?>" /><br />
-				<input class="submit" type="submit" value="Return" />
-			</form>
-<?php
-	include_once('include/page_end.php');
-	*/
 ?>

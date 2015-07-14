@@ -3,18 +3,10 @@
 ?>
 <!doctype html>
 <html lang="en">
-	<head>
-		<!--UO Libraries Offline Circulation Tool
-			Designed by Lara Nesselroad,
-			Coded by Spencer Bellerby,
-			Reviewed by Duncan Barth, Jeremy Echols, and Tyler Stewart
-			-->
-		
+	<head>	
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-		
 		<title><?php echo $MAIN_TITLE; if(isset($page_title)) echo " - $page_title"; ?></title>
-		
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
 		<link href="http://fonts.googleapis.com/css?family=Oxygen+Mono" rel="stylesheet" type="text/css" />
 		<link href="styles/style.css" media="all" rel="stylesheet" type="text/css" />
