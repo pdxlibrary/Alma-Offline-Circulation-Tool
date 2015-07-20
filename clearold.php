@@ -4,12 +4,6 @@
 ?>
 	<form action="deleteold.php" id="mainform" method="POST" name="mainform">
 		<p>
-		<select name="action">
-			<option value="none" selected>---</option>
-			<option value="delete">Delete Files and Records</option>
-		</select>
-		</p>
-		<p>
 		<?php
 			$DIR = './output';
 			$DIR_CONTENTS = array_diff(scandir($DIR), array('..','.','.gitinclude'));
