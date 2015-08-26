@@ -22,45 +22,45 @@ While thinking about writing software to merge multiple offline circulation file
  
  * Copy the files into the site.
  
-   ```
-   [user@recirc$] https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
-   ```
+    ```
+    [user@recirc$] https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
+    ```
 
  * Install the database. 
  
-   ```
-   mysql> create database alma_offline;  
-   mysql> grant all privileges on alma_offline.* to offline_user identified by 'offline_pass';  
-   mysql> flush privileges;  
-   mysql> exit;  
-   [user@recirc$] mysql -u offline_user -poffline_pass alma_offline < include/alma_offline.sql  
-   ```
+    ```
+    mysql> create database alma_offline;  
+    mysql> grant all privileges on alma_offline.* to offline_user identified by 'offline_pass';  
+    mysql> flush privileges;  
+    mysql> exit;  
+    [user@recirc$] mysql -u offline_user -poffline_pass alma_offline < include/alma_offline.sql  
+    ```
 
  * Copy the configuration file into place. 
  
-   ```
-   [user@recirc$] cp include/configuration_sample.php include/configuration.php  
-   ```  
+    ```
+    [user@recirc$] cp include/configuration_sample.php include/configuration.php  
+    ```  
 
  * Configure the app.
 
-   ```
-   <?php
-   $MAIN_TITLE    = 'Offline Circulation System';  
-   $CONTACT_NAME  = 'Library Systems Team';  
-   $CONTACT_EMAIL = 'help@our.edu';  
-   $FOOTER_TEXT   = 'Report any issues to $CONTACT_NAME (<a href="mailto:$CONTACT_EMAIL">$CONTACT_EMAIL</a>).';  
-
-   $LIBRARIES_ARRAY = array(  
-       '---' => 'Choose a Library',  
-       'MAIN' => 'Main Library',  
-       'OTHER' => 'Other Library',  
-   );  
-  
-   $DB_SERVER   = 'localhost';  
-   $DB_USERNAME = 'offline_user';  
-   $DB_PASSWORD = 'offline_pass';  
-   $DB_NAME     = 'alma_offline';  
-   $DB_TABLE    = 'transactions';  
-   ?> 
-   ```
+    ```
+    <?php
+    $MAIN_TITLE    = 'Offline Circulation System';  
+    $CONTACT_NAME  = 'Library Systems Team';  
+    $CONTACT_EMAIL = 'help@our.edu';  
+    $FOOTER_TEXT   = 'Report any issues to $CONTACT_NAME (<a href="mailto:$CONTACT_EMAIL">$CONTACT_EMAIL</a>).';  
+ 
+    $LIBRARIES_ARRAY = array(  
+        '---' => 'Choose a Library',  
+        'MAIN' => 'Main Library',  
+        'OTHER' => 'Other Library',  
+    );  
+   
+    $DB_SERVER   = 'localhost';  
+    $DB_USERNAME = 'offline_user';  
+    $DB_PASSWORD = 'offline_pass';  
+    $DB_NAME     = 'alma_offline';  
+    $DB_TABLE    = 'transactions';  
+    ?> 
+    ```
