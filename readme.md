@@ -13,7 +13,7 @@ While thinking about writing software to merge multiple offline circulation file
 ## Software Description
 
  * Basic collection of PHP scripts.  
- * OS package dependency is php-mysqli.
+ * Requires a LAMP webserver with the php-mysqli package.
  * Server backups are unnecessary.
  * Web server account has write access to somewhere in the server's filesystem.
  * Site is not accessible outside the library.
