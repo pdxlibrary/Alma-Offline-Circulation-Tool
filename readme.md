@@ -7,8 +7,8 @@ While thinking about writing software to merge multiple offline circulation file
 ## Our Environment and Assumptions
 
  * The offline circ server is online.
- * Library building's network is available (switches are on UPS, internal traffic will flow as long as there is power to the workstations.
- * All workstations that access offline circ have entries in their hosts file (/etc/hosts or c:\windows\system32\drivers\etc\hosts) for the offline circ server, incase DNS is unavailable.
+ * Library building's network is available (switches are on UPS, internal traffic will flow as long as there is power to the workstations).
+ * All workstations that access offline circ have entries in their hosts file (/etc/hosts or c:\windows\system32\drivers\etc\hosts) for the offline circ app server, in case DNS is unavailable.
 
 ## Software Description
 
