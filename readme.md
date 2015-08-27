@@ -6,12 +6,12 @@ While thinking about writing software to merge multiple offline circulation file
 
 ## How It Works
 
- * A web server hosts the interface and the database where transactions are centrally stored.
- * In the event of an Alma outage, the circulation staff access the web site and use it to record transactions.
-   ![Transaction Recording](images/offline-circ-1.jpg)
- * After the outage is over, one staff member uses the web system to generate a transaction file, which is then uploaded to Alma.
-   ![Generate File](images/offline-circ-2.jpg)
-   ![Download File](images/offline-circ-3.jpg)
+ * A web server hosts the interface and the database where transactions are centrally stored.  
+ * In the event of an Alma outage, the circulation staff access the web site and use it to record transactions.  
+   ![Transaction Recording](images/offline-circ-1.jpg)  
+ * After the outage is over, one staff member uses the web system to generate a transaction file, which is then uploaded to Alma.  
+   ![Generate File](images/offline-circ-2.jpg)  
+   ![Download File](images/offline-circ-3.jpg)  
 
 ## Our Environment and Assumptions
 
@@ -32,7 +32,13 @@ While thinking about writing software to merge multiple offline circulation file
  * Copy the files into the site.
  
     ```
-    [user@recirc$] https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
+    [libsys@recirc$] https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
+    ```
+
+ * Set permissions where the transaction files will be written.
+
+    ```
+    [libsys@recirc$] sudo chown apache /var/www/html/offline-circ/output
     ```
 
  * Install the database. 
@@ -48,7 +54,7 @@ While thinking about writing software to merge multiple offline circulation file
  * Copy the configuration file into place. 
  
     ```
-    [user@recirc$] cp include/configuration_sample.php include/configuration.php  
+    [libsys@recirc$] cp include/configuration_sample.php include/configuration.php  
     ```  
 
  * Configure the app.
@@ -73,3 +79,6 @@ While thinking about writing software to merge multiple offline circulation file
     $DB_TABLE    = 'transactions';  
     ?> 
     ```
+
+ * Limit access to this site in the web server's configuration.
+
