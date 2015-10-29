@@ -20,6 +20,15 @@
 					}
 				?>
 			</ul>
+                        <p>After downloading:
+                                <ol>
+                                        <li>Switch to Alma</li>
+                                        <li>Alma Menu &gt; Fulfillment &gt; Advanced Tools &gt; Offline Circulation</li>
+                                        <li>Click the file folder and select the file you just downloaded. <br />
+                                            <img src="images/instructions-1.jpg"></li>
+                                        <li>Click the Upload and Validate File Content button.</li>
+                                </ol>
+                        </p>
 <?php
 	include_once('include/page_end.php');
 ?>
