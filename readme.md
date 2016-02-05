@@ -71,28 +71,28 @@ The results have been pushed to the [PSU Library's Github](https://github.com/pd
 
  * Configure the app.
 
-    ```
-    #!php
+```
+#!php
 
-    <?php
-        $MAIN_TITLE    = 'Offline Circulation System';  
-        $CONTACT_NAME  = 'Library Technologies Team';  
-        $CONTACT_EMAIL = 'libsys@lists.pdx.edu';  
-        $FOOTER_TEXT   = 'Report any issues to $CONTACT_NAME (<a href="mailto:$CONTACT_EMAIL">$CONTACT_EMAIL</a>).';  
+<?php
+    $MAIN_TITLE    = 'Offline Circulation System';  
+    $CONTACT_NAME  = 'Library Technologies Team';  
+    $CONTACT_EMAIL = 'libsys@lists.pdx.edu';  
+    $FOOTER_TEXT   = 'Report any issues to $CONTACT_NAME (<a href="mailto:$CONTACT_EMAIL">$CONTACT_EMAIL</a>).';  
  
-        $LIBRARIES_ARRAY = array(  
-            '---' => 'Choose a Library',  
-            'MILLAR' => 'Millar Library',  
-            'AVS'    => 'AV Services',  
-        );  
+    $LIBRARIES_ARRAY = array(  
+        '---' => 'Choose a Library',  
+        'MILLAR' => 'Millar Library',  
+        'AVS'    => 'AV Services',  
+    );  
    
-        $DB_SERVER   = 'localhost';  
-        $DB_USERNAME = 'offline_user';  
-        $DB_PASSWORD = 'offline_pass';  
-        $DB_NAME     = 'alma_offline';  
-        $DB_TABLE    = 'transactions';  
-        ?> 
-    ```
+    $DB_SERVER   = 'localhost';  
+    $DB_USERNAME = 'offline_user';  
+    $DB_PASSWORD = 'offline_pass';  
+    $DB_NAME     = 'alma_offline';  
+    $DB_TABLE    = 'transactions';  
+    ?> 
+```
 
 
  * Limit access to this site in the web server's configuration.
