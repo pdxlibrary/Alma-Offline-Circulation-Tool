@@ -72,9 +72,8 @@ The results have been pushed to the [PSU Library's Github](https://github.com/pd
  * Configure the app.
 
 
-  ```
-  #!php
-
+```
+#!php
 
 <?php
     $MAIN_TITLE    = 'Offline Circulation System';  
@@ -94,7 +93,7 @@ The results have been pushed to the [PSU Library's Github](https://github.com/pd
     $DB_NAME     = 'alma_offline';  
     $DB_TABLE    = 'transactions';  
     ?> 
-  ```
+```
 
 
  * Limit access to this site in the web server's configuration.
