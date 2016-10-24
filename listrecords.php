@@ -9,7 +9,8 @@
 	<p>This button will extract the records from this page into *.dat files, then 
 	flag them in the database. Please <strong>do not generate a new file</strong> if all 
 	you want to do is view <a href="listfiles.php" target="_blank">previously generated 
-	files</a> from an older date.</p>
+	files</a> from an older date. After the file is generated, follow the instructions
+        on the <a href="/listfiles.php">List Generated Files</a> page.</p>
 
 	<form action="extract.php" id="mainform" method="POST" name="mainform">
 		<input type="hidden" id="library" name="library" value="MILLAR" />

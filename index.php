@@ -30,6 +30,7 @@
 			<label for="textarea" style="visibility:hidden; width:0 !important;">Text Area</label><textarea id="textarea" name="textarea" readonly rows="8" cols="80"></textarea>
 		</div>
 	</form>
+	<p>After the outage is over, one person must <a href="/listrecords.php">generate an offline transaction file</a> and upload it to Alma.</p>
 <?php
 	include_once('include/page_end.php');
 ?>
