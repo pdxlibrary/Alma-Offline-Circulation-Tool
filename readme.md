@@ -44,7 +44,7 @@ The results have been pushed to the [PSU Library's Github](https://github.com/pd
  * Copy the files into the site.
  
     ```
-    [libsys@recirc$] https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
+    [libsys@recirc$] git clone https://github.com/pdxlibrary/alma-offline-circulation-tool.git /var/www/html/offline-circ
     ```
 
  * Set permissions where the transaction files will be written.
