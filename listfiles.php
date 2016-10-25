@@ -27,6 +27,7 @@
                                         <li>Click the file folder and select the file you just downloaded. <br />
                                             <img src="images/instructions-1.jpg"></li>
                                         <li>Click the Upload and Validate File Content button.</li>
+					<li>When the status displays as completed, it will show how many "entities" finished and failed. For "entities failed" select the view button.</li>
                                 </ol>
                         </p>
 <?php
